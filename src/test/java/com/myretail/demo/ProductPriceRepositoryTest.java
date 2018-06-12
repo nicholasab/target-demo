@@ -1,11 +1,9 @@
 package com.myretail.demo;
 
 import com.myretail.demo.Repository.ProductPriceRepository;
-import com.myretail.demo.domain.Product;
 import com.myretail.demo.domain.ProductPrice;
-import com.myretail.demo.exception.ProductMismatchException;
-import com.myretail.demo.exception.ProductNotFoundException;
 import com.myretail.demo.service.ProductService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +17,14 @@ import static org.junit.Assert.assertNotEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DemoApplicationTests {
+public class ProductPriceRepositoryTest {
 
     @Autowired
     private ProductPriceRepository productPriceRepository;
 
-    @Autowired
-    private ProductService productService;
-
-    @Test
-    public void contextLoads() {
+    @Before
+    public void setup(){
+        productPriceRepository.deleteAll();
     }
 
     @Test
@@ -57,17 +53,4 @@ public class DemoApplicationTests {
         assertNotEquals(productPrice.getCurrency(), productPrice2.getCurrency());
         assertNotEquals(productPrice.getValue(), productPrice2.getValue());
     }
-
-    @Test(expected = ProductMismatchException.class)
-    public void testServicePutMismatch() throws Exception {
-        Product product = new Product(2L, "name", new ProductPrice(2L, new BigDecimal(1.00), "USD"));
-        productService.saveProductById(1L, product);
-    }
-
-    @Test(expected = ProductNotFoundException.class)
-    public void testServiceGetNotFound() throws Exception {
-        productService.getProductById(3L);
-    }
-
-
 }

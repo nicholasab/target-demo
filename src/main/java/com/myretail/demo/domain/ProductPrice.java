@@ -52,4 +52,13 @@ public class ProductPrice {
         this.value = value;
         this.currency = currency;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==null || !(obj instanceof ProductPrice)){
+            return false;
+        }
+        ProductPrice ob = (ProductPrice) obj;
+        return (productId.equals(ob.productId) && value.equals(ob.value) && currency.equals(ob.currency));
+    }
 }
