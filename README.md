@@ -1,5 +1,5 @@
 
-##Setup
+## Setup
 To run and test this application the following resources are needed:
 1. MongoDb instance
 2. REST client
@@ -10,7 +10,7 @@ After verifying MongoDB is installed and running:
     1. Run `.\gradlew bootRun` to start the application locally 
     2. Or `.\gradlew bootJar` to build a jar to run manually
 
-##Application Usage
+## Application Usage
 
 The spring application will run on `http://localhost:8080` by default. Use this as the base URI for testing via the REST client.
 
@@ -44,10 +44,10 @@ Example: _note the name of the product is not required on **PUT**_
 }
 ```
 
-##Testing
+## Testing
 
 Run `.\gradlew test` to run and verify Repository and Service tests.
 
-##Notes
+## Notes
 
 
