@@ -4,6 +4,9 @@
 /docsearch/.gradle
 /docsearch/build/
 /docsearch/out/
+/myretail/.gradle
+/myretail/build/
+/myretail/out/
 
 ### STS ###
 .apt_generated

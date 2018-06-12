@@ -1,3 +1,4 @@
 rootProject.name = 'demo'
-include("docsearch")
+include 'docsearch'
+include 'myretail'
 
