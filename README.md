@@ -46,7 +46,9 @@ Example: _note the name of the product is not required on **PUT**_
 
 ## Testing
 
-Run `.\gradlew test` to run and verify Repository and Service tests.
+Run `.\gradlew test` to run and verify Repository and Service integration tests.
+
+_Note: MongoDB needs to be running to connect and test_
 
 ## Notes
 
