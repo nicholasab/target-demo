@@ -15,10 +15,10 @@ public class MongoDbConfiguration extends AbstractMongoConfiguration {
 
     @Override
     public MongoClient mongoClient() {
-        ServerAddress sa = new ServerAddress(env.getProperty("spring.data.mongodb.host"),Integer.valueOf(env.getProperty("spring.data.mongodb.port")));
+        ServerAddress sa = new ServerAddress(env.getProperty("spring.data.mongodb.host"), Integer.valueOf(env.getProperty("spring.data.mongodb.port")));
         MongoClientOptions options = MongoClientOptions.builder()
                 .socketTimeout(5000).heartbeatSocketTimeout(3000).build();
-        return new MongoClient(sa,options);
+        return new MongoClient(sa, options);
     }
 
     @Override

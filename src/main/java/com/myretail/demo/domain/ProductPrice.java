@@ -1,14 +1,14 @@
 package com.myretail.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Document(collection="productprice")
+@Document(collection = "productprice")
 public class ProductPrice {
 
     @JsonIgnore
@@ -16,7 +16,9 @@ public class ProductPrice {
     private Long productId;
     @NotNull(message = "current_price.value must not be null")
     private BigDecimal value;
-    @NotNull(message = "current_price.currency must not be null")
+
+    @NotNull(message = "current_price.currency_code must not be null")
+    @JsonProperty("currency_code")
     private String currency;
 
     public Long getProductId() {

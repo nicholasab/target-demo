@@ -6,7 +6,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -36,11 +35,12 @@ public class CustomResponseEntityExceptionHandler extends ExceptionHandlerExcept
     public ResponseEntity<ApiErrorWrapper> handleArgumentNotValid(MethodArgumentNotValidException ex) {
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
         apiErrorWrapper.setErrorCode(HttpStatus.BAD_REQUEST);
-        for(FieldError error : ex.getBindingResult().getFieldErrors()){
-            apiErrorWrapper.addErrorMessage(String.format("Field error: %s",error.getDefaultMessage()));
+        for (FieldError error : ex.getBindingResult().getFieldErrors()) {
+            apiErrorWrapper.addErrorMessage(String.format("Field error: %s", error.getDefaultMessage()));
         }
         return getResponse(apiErrorWrapper);
     }
+
     @ExceptionHandler(InvalidFormatException.class)
     public ResponseEntity<ApiErrorWrapper> handleInvalidFormat(InvalidFormatException ex) {
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
@@ -53,6 +53,7 @@ public class CustomResponseEntityExceptionHandler extends ExceptionHandlerExcept
         }*/
         return getResponse(apiErrorWrapper);
     }
+
     @ExceptionHandler(DataAccessResourceFailureException.class)
     public ResponseEntity<ApiErrorWrapper> handleDataResourceFailure(DataAccessResourceFailureException ex) {
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
