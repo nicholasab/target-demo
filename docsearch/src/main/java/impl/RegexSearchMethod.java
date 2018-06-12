@@ -12,15 +12,15 @@ public class RegexSearchMethod implements SearchMethod {
 
     @Override
     public SearchResults searchDocument(File file, String text) throws IOException {
+        long start = System.currentTimeMillis();
         if (!files.containsKey(file)) {
             files.put(file, readFile(file).toLowerCase());
         }
         text = text.toLowerCase();
         String fileString = files.get(file);
-        Pattern pattern = Pattern.compile(String.format(" %s ",text));
+        Pattern pattern = Pattern.compile(String.format("%s", text));
         Matcher matcher = pattern.matcher(fileString);
 
-        long start = System.currentTimeMillis();
         int count = 0;
         while (matcher.find()) {
             count++;

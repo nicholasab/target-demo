@@ -4,27 +4,26 @@ import search.SearchResults;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class StringMatchSearchMethod implements SearchMethod {
 
     @Override
     public SearchResults searchDocument(File file, String text) throws IOException {
+        long start = System.currentTimeMillis();
         if (!files.containsKey(file)) {
             files.put(file, readFile(file).toLowerCase());
         }
         text = text.toLowerCase();
         String fileString = files.get(file);
-        long start = System.currentTimeMillis();
         int count = 0;
-        for(int idx = 0;idx<fileString.length();idx+=text.length()) {
-            idx = fileString.indexOf(text,idx);
-            if(idx == -1){
+        for (int i = 0; i < fileString.length(); i += text.length()) {
+            i = fileString.indexOf(text, i);
+            if (i == -1) {
                 break;
             }
-            count ++;
+            count++;
         }
         long end = System.currentTimeMillis();
-        return new SearchResults(count,end-start);
+        return new SearchResults(count, end - start);
     }
 }
