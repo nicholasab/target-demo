@@ -1,6 +1,9 @@
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+/docsearch/.gradle
+/docsearch/build/
+/docsearch/out/
 
 ### STS ###
 .apt_generated
