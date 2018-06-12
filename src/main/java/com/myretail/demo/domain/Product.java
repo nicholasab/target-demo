@@ -1,10 +1,13 @@
 package com.myretail.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+@JsonPropertyOrder({"id","name","current_price"})
 public class Product {
 
     @NotNull(message = "id must not be null")
@@ -41,8 +44,8 @@ public class Product {
         this.productPrice = productPrice;
     }
 
-
-    public Product(Long id, String name, ProductPrice productPrice) {
+    @JsonCreator
+    public Product(Long id, String name, @JsonProperty("current_price") ProductPrice productPrice) {
         this.id = id;
         this.name = name;
         this.productPrice = productPrice;

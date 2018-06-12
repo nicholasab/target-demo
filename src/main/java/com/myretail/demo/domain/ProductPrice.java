@@ -1,5 +1,6 @@
 package com.myretail.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
@@ -45,7 +46,8 @@ public class ProductPrice {
         this.currency = currency;
     }
 
-    public ProductPrice(Long productId, BigDecimal value, String currency) {
+    @JsonCreator
+    public ProductPrice(Long productId, BigDecimal value, @JsonProperty("currency_code") String currency) {
         this.productId = productId;
         this.value = value;
         this.currency = currency;

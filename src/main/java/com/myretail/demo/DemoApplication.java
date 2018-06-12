@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.math.BigDecimal;
+
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 
@@ -22,11 +24,10 @@ public class DemoApplication implements CommandLineRunner {
 
         repository.deleteAll();
 
-        /*repository.save(new ProductPrice(13860428l, 10.13f, "USD"));
-        repository.save(new ProductPrice(13860429l, 10.13f, "USD"));
-        repository.save(new ProductPrice(13860429l, 10.14f, "CAN"));*/
+        repository.save(new ProductPrice(16696652l, new BigDecimal(5.00), "USD"));
+        repository.save(new ProductPrice(13860429l, new BigDecimal(8.91), "USD"));
+        repository.save(new ProductPrice(13860428l, new BigDecimal(8.91), "USD"));
 
-        ProductPrice price = repository.findByProductId(13860428);
-        ProductPrice price1 = repository.findByProductId(13860429);
+
     }
 }
