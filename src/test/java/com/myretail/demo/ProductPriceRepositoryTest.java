@@ -2,7 +2,6 @@ package com.myretail.demo;
 
 import com.myretail.demo.Repository.ProductPriceRepository;
 import com.myretail.demo.domain.ProductPrice;
-import com.myretail.demo.service.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +22,7 @@ public class ProductPriceRepositoryTest {
     private ProductPriceRepository productPriceRepository;
 
     @Before
-    public void setup(){
+    public void setup() {
         productPriceRepository.deleteAll();
     }
 

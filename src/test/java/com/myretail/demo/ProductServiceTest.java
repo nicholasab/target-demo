@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
+
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
@@ -28,9 +29,10 @@ public class ProductServiceTest {
     private ProductService productService;
 
     @Before
-    public void setup(){
+    public void setup() {
         productPriceRepository.deleteAll();
     }
+
     @Test(expected = ProductMismatchException.class)
     public void testServicePutMismatch() throws Exception {
         Product product = new Product(2L, "name", new ProductPrice(2L, new BigDecimal(1.00), "USD"));
