@@ -25,12 +25,14 @@ public class IndexedSearchMethod implements SearchMethod {
 
     private void populateCache(File file, String fileContents) {
         Map<String, Integer> instance = new HashMap<>();
-        String[] split = fileContents.split("[\\.\\,\\s+]");
+        String[] split = fileContents.split("[^a-zA-Z0-9]+");
         for (String s : split) {
-            if (instance.containsKey(s)) {
-                instance.put(s, instance.get(s) + 1);
-            } else {
-                instance.put(s, 1);
+            if(s.length()>0) {
+                if (instance.containsKey(s)) {
+                    instance.put(s, instance.get(s) + 1);
+                } else {
+                    instance.put(s, 1);
+                }
             }
         }
         cache.put(file, instance);
