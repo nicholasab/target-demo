@@ -8,20 +8,37 @@ import impl.StringMatchSearchMethod;
 import java.util.function.Supplier;
 
 public enum SearchMethodEnum {
-    STRING("String Search",StringMatchSearchMethod::new),
-    REGEX("Regex Search",RegexSearchMethod::new),
-    INDEX("Indexed Search",IndexedSearchMethod::new);
+    STRING(1, "String Search", StringMatchSearchMethod::new),
+    REGEX(2, "Regex Search", RegexSearchMethod::new),
+    INDEX(3, "Indexed Search", IndexedSearchMethod::new);
 
     private Supplier<? extends SearchMethod> method;
     private String name;
-    SearchMethodEnum(String name,Supplier<? extends SearchMethod> method){
+    private int id;
+
+    SearchMethodEnum(int id, String name, Supplier<? extends SearchMethod> method) {
+        this.id = id;
         this.name = name;
         this.method = method;
     }
 
-    public String getName(){
+    public static SearchMethodEnum getById(int id) throws Exception {
+        for (SearchMethodEnum e : values()) {
+            if (e.getId() == id){
+                return e;
+            }
+        }
+        throw new Exception("Invalid search method requested");
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
         return name;
     }
+
     public SearchMethod getInstance() {
         return method.get();
     }

@@ -13,11 +13,15 @@ public class PerformanceDocSearch {
 
     @Test
     public void testPerformance() throws IOException {
+        System.out.println("********************************");
+        System.out.println("** Beginning Performance Test **");
+        System.out.println("********************************");
         URL file = PerformanceDocSearch.class.getClassLoader().getResource("textexamples");
         File[] files = new File(file.getFile()).listFiles();
 
 
         for (SearchMethodEnum s : SearchMethodEnum.values()) {
+
             SearchMethod search = s.getInstance();
             long elapsedTime = 0;
 
