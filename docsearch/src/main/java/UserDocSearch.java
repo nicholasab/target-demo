@@ -2,15 +2,23 @@ import impl.SearchMethod;
 import search.SearchMethodEnum;
 
 import java.io.File;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class UserDocSearch {
 
     public static void main(String[] args) throws Exception {
-        URL fileFolder = UserDocSearch.class.getClassLoader().getResource("textexamples");
-        File[] files = new File(fileFolder.getFile()).listFiles();
+
+        File dir;
+        if (args.length < 1 || !(dir = new File(args[0])).exists() || !dir.isDirectory()) {
+            System.out.println("Pass a valid directory as an argument, exiting");
+            return;
+        }
+        File[] files = dir.listFiles();
+        if (files.length < 1) {
+            System.out.println("Directory empty, exiting");
+            return;
+        }
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the search term:");

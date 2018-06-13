@@ -17,6 +17,7 @@ public class PerformanceDocSearch {
     Random r = new Random();
     private ArrayList<String> wordList;
     private File[] files;
+
     @Test
     public void testPerformance() throws IOException {
         System.out.println("** Beginning Performance Test **");
@@ -42,19 +43,22 @@ public class PerformanceDocSearch {
             System.out.println(String.format("\t%s Search - %d ms", s.getName(), resultTime.get(s)));
         }
     }
-    private String randomWord(){
+
+    private String randomWord() {
         return wordList.get(r.nextInt(wordList.size()));
     }
-    private File randomFile(){
+
+    private File randomFile() {
         return files[r.nextInt(files.length)];
     }
+
     private static ArrayList<String> generateWordList(File[] files) throws IOException {
         ArrayList<String> words = new ArrayList<>();
-        for(File file : files){
+        for (File file : files) {
             String fileContents = new String(Files.readAllBytes(file.toPath()));
             String[] split = fileContents.split("[^a-zA-Z0-9]+");
             for (String s : split) {
-                if(s.length() > 0 && !words.contains(s)){
+                if (s.length() > 0 && !words.contains(s)) {
                     words.add(s);
                 }
             }

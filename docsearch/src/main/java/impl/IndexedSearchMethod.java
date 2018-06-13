@@ -27,7 +27,7 @@ public class IndexedSearchMethod implements SearchMethod {
         Map<String, Integer> instance = new HashMap<>();
         String[] split = fileContents.split("[^a-zA-Z0-9]+");
         for (String s : split) {
-            if(s.length()>0) {
+            if (s.length() > 0) {
                 if (instance.containsKey(s)) {
                     instance.put(s, instance.get(s) + 1);
                 } else {
