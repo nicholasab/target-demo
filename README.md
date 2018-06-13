@@ -71,4 +71,6 @@ The application jar accepts one argument, the directory to files you wish to sea
 
 Ex. `java -jar docsearch-1.0-SNAPSHOT.jar D:\folder\files`
 
+_Note: Running the performance test can take quite a while sometimes >1 minute._
+
 

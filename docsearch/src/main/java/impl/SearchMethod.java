@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public interface SearchMethod {
 
-    //local cache of files -> file contents
+    //static cache of files -> file contents
     HashMap<File, String> files = new HashMap<>();
 
     int searchDocument(File file, String text) throws IOException;
