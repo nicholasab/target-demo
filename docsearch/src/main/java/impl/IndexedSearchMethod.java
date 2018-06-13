@@ -1,7 +1,5 @@
 package impl;
 
-import search.SearchResults;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,8 +10,7 @@ public class IndexedSearchMethod implements SearchMethod {
     private HashMap<File, Map<String, Integer>> cache = new HashMap<>();
 
     @Override
-    public SearchResults searchDocument(File file, String text) throws IOException {
-        long start = System.currentTimeMillis();
+    public int searchDocument(File file, String text) throws IOException {
         if (!files.containsKey(file)) {
             files.put(file, readFile(file).toLowerCase());
         }
@@ -23,8 +20,7 @@ public class IndexedSearchMethod implements SearchMethod {
         }
         Map<String, Integer> index = cache.get(file);
         int count = index.containsKey(text.toLowerCase()) ? index.get(text.toLowerCase()) : 0;
-        long end = System.currentTimeMillis();
-        return new SearchResults(count, end - start);
+        return count;
     }
 
     private void populateCache(File file, String fileContents) {

@@ -8,9 +8,9 @@ import impl.StringMatchSearchMethod;
 import java.util.function.Supplier;
 
 public enum SearchMethodEnum {
-    STRING(1, "String Search", StringMatchSearchMethod::new),
-    REGEX(2, "Regex Search", RegexSearchMethod::new),
-    INDEX(3, "Indexed Search", IndexedSearchMethod::new);
+    STRING(1, "String Match", StringMatchSearchMethod::new),
+    REGEX(2, "Regex", RegexSearchMethod::new),
+    INDEX(3, "Indexed", IndexedSearchMethod::new);
 
     private Supplier<? extends SearchMethod> method;
     private String name;
@@ -24,7 +24,7 @@ public enum SearchMethodEnum {
 
     public static SearchMethodEnum getById(int id) throws Exception {
         for (SearchMethodEnum e : values()) {
-            if (e.getId() == id){
+            if (e.getId() == id) {
                 return e;
             }
         }

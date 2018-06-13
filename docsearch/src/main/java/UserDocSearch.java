@@ -1,6 +1,5 @@
 import impl.SearchMethod;
 import search.SearchMethodEnum;
-import search.SearchResults;
 
 import java.io.File;
 import java.net.URL;
@@ -25,19 +24,18 @@ public class UserDocSearch {
 
         SearchMethodEnum methodEnum = SearchMethodEnum.getById(methodInt);
         SearchMethod method = methodEnum.getInstance();
-        HashMap<File,SearchResults> resultMap = new HashMap<>();
+        HashMap<File, Integer> resultMap = new HashMap<>();
         long start = System.currentTimeMillis();
-        for(File file : files){
-            SearchResults results = method.searchDocument(file,term);
-            resultMap.put(file,results);
+        for (File file : files) {
+            int results = method.searchDocument(file, term);
+            resultMap.put(file, results);
         }
         long end = System.currentTimeMillis();
         System.out.println("Search results:");
-        for(File file : files){
-            SearchResults results = resultMap.get(file);
-            System.out.println(String.format("\t%s - %d matches",file.getName(),results.getCount()));
+        for (File file : files) {
+            System.out.println(String.format("\t%s - %d matches", file.getName(), resultMap.get(file)));
         }
-        System.out.println(String.format("Elapsed time: %d ms",end-start));
+        System.out.println(String.format("Elapsed time: %d ms", end - start));
 
     }
 }

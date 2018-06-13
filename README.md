@@ -1,4 +1,4 @@
-
+# MyRetail
 ## Setup
 To run and test this application the following resources are needed:
 1. MongoDb instance

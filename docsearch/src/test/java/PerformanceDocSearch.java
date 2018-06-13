@@ -1,11 +1,11 @@
 import impl.SearchMethod;
 import org.junit.Test;
 import search.SearchMethodEnum;
-import search.SearchResults;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 
 public class PerformanceDocSearch {
 
@@ -13,23 +13,27 @@ public class PerformanceDocSearch {
 
     @Test
     public void testPerformance() throws IOException {
-        System.out.println("********************************");
         System.out.println("** Beginning Performance Test **");
-        System.out.println("********************************");
         URL file = PerformanceDocSearch.class.getClassLoader().getResource("textexamples");
         File[] files = new File(file.getFile()).listFiles();
 
-
+        HashMap<SearchMethodEnum, Long> resultTime = new HashMap<>();
         for (SearchMethodEnum s : SearchMethodEnum.values()) {
-
             SearchMethod search = s.getInstance();
-            long elapsedTime = 0;
 
+            long start = System.currentTimeMillis();
+            System.out.println(String.format("Beginning %s Search", s.getName()));
             for (int i = 0; i < testSize; i++) {
-                SearchResults result = search.searchDocument(files[0], "the");
-                elapsedTime += result.getTime();
+                //ignore results, calculate on total time
+                search.searchDocument(files[0], "the");
             }
-            System.out.println(String.format("%s method in %s", s.getName(), elapsedTime));
+            long end = System.currentTimeMillis();
+            resultTime.put(s, end - start);
+        }
+
+        System.out.println(String.format("\nResults for %d searches:", testSize));
+        for (SearchMethodEnum s : SearchMethodEnum.values()) {
+            System.out.println(String.format("\t%s Search - %d ms", s.getName(), resultTime.get(s)));
         }
     }
 }
