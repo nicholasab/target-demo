@@ -1,3 +1,5 @@
+### Notes
+
 _compiled and tested on Java JDK 9.0.4_
 
 _all .\gradlew commands ran in base repository directory_
@@ -49,17 +51,13 @@ Example: _note the name of the product is not required on **PUT**_
 	}
 }
 ```
+Application output will also be place in `application.log` where you started the application
 
 ## Testing
 
 Run `.\gradlew myretail:test` to run and verify Repository and Service integration tests.
 
 _Note: MongoDB needs to be running to connect and test_
-
-
-## Notes
-
-Application output will also be place in `application.log` where you started the application
 
 # Document Search
 
