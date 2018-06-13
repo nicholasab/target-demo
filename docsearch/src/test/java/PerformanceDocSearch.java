@@ -58,6 +58,7 @@ public class PerformanceDocSearch {
             String fileContents = new String(Files.readAllBytes(file.toPath()));
             String[] split = fileContents.split("[^a-zA-Z0-9]+");
             for (String s : split) {
+                s = s.toLowerCase();
                 if (s.length() > 0 && !words.contains(s)) {
                     words.add(s);
                 }

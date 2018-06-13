@@ -7,6 +7,10 @@ import impl.StringMatchSearchMethod;
 
 import java.util.function.Supplier;
 
+/**
+ * enum of all search methods
+ * provides readable name, and supplier
+ */
 public enum SearchMethodEnum {
     STRING(1, "String Match", StringMatchSearchMethod::new),
     REGEX(2, "Regex", RegexSearchMethod::new),

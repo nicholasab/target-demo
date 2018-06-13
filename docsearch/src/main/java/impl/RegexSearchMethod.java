@@ -10,10 +10,11 @@ public class RegexSearchMethod implements SearchMethod {
     @Override
     public int searchDocument(File file, String text) throws IOException {
         if (!files.containsKey(file)) {
-            files.put(file, readFile(file).toLowerCase());
+            files.put(file, readFile(file));
         }
-        text = text.toLowerCase();
         String fileString = files.get(file);
+
+        //compile a pattern based on the search term
         Pattern pattern = Pattern.compile(String.format("%s", text));
         Matcher matcher = pattern.matcher(fileString);
 
