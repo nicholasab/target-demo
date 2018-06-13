@@ -1,4 +1,5 @@
 _compiled and tested on Java JDK 9.0.4_
+
 _all .\gradlew commands ran in base repository directory_
 
 # MyRetail
