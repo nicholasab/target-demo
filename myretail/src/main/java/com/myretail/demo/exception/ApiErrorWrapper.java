@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Object to wrap non formatted errors for readability
+ */
 @JsonPropertyOrder({"timestamp", "status", "errors"})
 public class ApiErrorWrapper {
 

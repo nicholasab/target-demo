@@ -21,22 +21,36 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * ApacheHttpClient pool to manage outbound http connections
+ */
 public class HttpClientPool {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private static PoolingHttpClientConnectionManager cm;
     public static final HttpClientPool INSTANCE = new HttpClientPool();
 
+    /**
+     * Configure default maximum connections and maximum per route
+     */
     private HttpClientPool() {
         cm = new PoolingHttpClientConnectionManager();
         cm.setMaxTotal(20);
         cm.setDefaultMaxPerRoute(20);
     }
 
+    /**
+     * @return A new instance of an HttpClient from the connection pool
+     */
     private CloseableHttpClient getHttpClientInstance() {
         return HttpClients.custom().setConnectionManager(cm).build();
     }
 
+    /**
+     * Return a JsonObject from the requested URI and throw an exception on non 200 responses
+     * @param uri URI of the requested resource
+     * @return JsonObject returned by 200 responses
+     */
     public @Nullable
     JsonObject requestURI(String uri) {
         log.debug("Requesting GET of uri: {}",uri);
@@ -58,6 +72,10 @@ public class HttpClientPool {
         return json;
     }
 
+    /**
+     * @param entity HttpEntity from an HttpClient response
+     * @return JsonObject parsed from the response
+     */
     private @Nullable
     JsonObject getJson(HttpEntity entity) {
         JsonObject json = null;

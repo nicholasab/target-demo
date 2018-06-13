@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 
+/**
+ * Custom exception handler to catch and format non-human readable
+ * exceptions such as deserialization exceptions and to strive for
+ * consistent error messages
+ */
 @ControllerAdvice
 public class CustomResponseEntityExceptionHandler extends ExceptionHandlerExceptionResolver {
     private final Logger log = LoggerFactory.getLogger(this.getClass());

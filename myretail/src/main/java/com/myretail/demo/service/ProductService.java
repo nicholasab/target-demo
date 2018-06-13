@@ -13,6 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+/**
+ *  ProductService for main logic for saving and getting products
+ */
 @Service
 public class ProductService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -21,6 +25,11 @@ public class ProductService {
     @Autowired
     private ProductPriceRepository productPriceRepository;
 
+    /**
+     * Retrieves a Product from Http response and db entry
+     * @param id productId to read
+     * @return Product
+     */
     public Product getProductById(long id) {
         ProductPrice productPrice = productPriceRepository.findByProductId(id);
         if (productPrice == null) {
@@ -32,6 +41,12 @@ public class ProductService {
         return new Product(id, getProductName(json), productPrice);
     }
 
+    /**
+     * Updates the DB information for a given product and return the constructed Product
+     * @param id productId from path parameter
+     * @param product Product object with updated ProductPrice information
+     * @return Updated Product
+     */
     public Product saveProductById(long id, Product product) {
         if (product.getId() != id) {
             log.debug("Error saving productId mismatched with requested id: {} | {}", id, product.getId());
@@ -50,6 +65,11 @@ public class ProductService {
         return product;
     }
 
+    /**
+     * Parse the title from HttpResponse json from redskytarget
+     * @param json json returned from HttpClient
+     * @return String with title
+     */
     private String getProductName(JsonObject json) {
         return json.getAsJsonObject("product").getAsJsonObject("item").getAsJsonObject("product_description").get("title").getAsString();
     }

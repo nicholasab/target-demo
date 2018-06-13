@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * ProductController for /products resource
+ * Accepts GET and PUT, interfaces with the ProductService
+ */
 @RestController
 public class ProductController {
 

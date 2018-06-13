@@ -13,6 +13,10 @@ public class MongoDbConfiguration extends AbstractMongoConfiguration {
     @Autowired
     private Environment env;
 
+    /**
+     * Override client creation to allow mongoclientoptions to be set
+     * @return
+     */
     @Override
     public MongoClient mongoClient() {
         ServerAddress sa = new ServerAddress(env.getProperty("spring.data.mongodb.host"), Integer.valueOf(env.getProperty("spring.data.mongodb.port")));
@@ -21,6 +25,10 @@ public class MongoDbConfiguration extends AbstractMongoConfiguration {
         return new MongoClient(sa, options);
     }
 
+    /**
+     * Return database from application.properties
+     * @return
+     */
     @Override
     protected String getDatabaseName() {
         return env.getProperty("spring.data.mongodb.database");
