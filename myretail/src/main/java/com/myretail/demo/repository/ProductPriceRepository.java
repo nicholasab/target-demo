@@ -1,4 +1,4 @@
-package com.myretail.demo.Repository;
+package com.myretail.demo.repository;
 
 import com.myretail.demo.domain.ProductPrice;
 import org.springframework.data.mongodb.repository.MongoRepository;

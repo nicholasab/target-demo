@@ -2,6 +2,8 @@ package com.myretail.demo.product;
 
 import com.myretail.demo.domain.Product;
 import com.myretail.demo.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

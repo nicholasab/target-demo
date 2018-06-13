@@ -1,6 +1,6 @@
 package com.myretail.demo;
 
-import com.myretail.demo.Repository.ProductPriceRepository;
+import com.myretail.demo.repository.ProductPriceRepository;
 import com.myretail.demo.domain.Product;
 import com.myretail.demo.domain.ProductPrice;
 import com.myretail.demo.exception.ProductMismatchException;

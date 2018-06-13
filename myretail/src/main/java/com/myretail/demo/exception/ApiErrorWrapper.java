@@ -41,4 +41,8 @@ public class ApiErrorWrapper {
         errorMessages.add(errorMessage);
     }
 
+    @Override
+    public String toString(){
+        return String.format("Exception caught, returning %s message: %s",errorStatus.toString(),errorMessages.toString());
+    }
 }

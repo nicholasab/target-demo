@@ -1,6 +1,6 @@
 package com.myretail.demo;
 
-import com.myretail.demo.Repository.ProductPriceRepository;
+import com.myretail.demo.repository.ProductPriceRepository;
 import com.myretail.demo.domain.ProductPrice;
 import org.junit.Before;
 import org.junit.Test;

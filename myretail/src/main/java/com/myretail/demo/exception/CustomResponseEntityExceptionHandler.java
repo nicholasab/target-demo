@@ -1,6 +1,8 @@
 package com.myretail.demo.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataAccessResourceFailureException;
@@ -14,7 +16,16 @@ import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExc
 
 @ControllerAdvice
 public class CustomResponseEntityExceptionHandler extends ExceptionHandlerExceptionResolver {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+    @ExceptionHandler(HttpClientException.class)
+    public ResponseEntity<ApiErrorWrapper> handleHttpClientException(HttpClientException ex) {
+        ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
+        apiErrorWrapper.setErrorCode(ex.getStatus());
+        apiErrorWrapper.addErrorMessage(ex.getMessage());
+        log.debug(apiErrorWrapper.toString());
+        return getResponse(apiErrorWrapper);
+    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorWrapper> handleArgumentNotValid(MethodArgumentNotValidException ex) {
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
@@ -22,6 +33,7 @@ public class CustomResponseEntityExceptionHandler extends ExceptionHandlerExcept
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             apiErrorWrapper.addErrorMessage(String.format("Field error: %s", error.getDefaultMessage()));
         }
+        log.debug(apiErrorWrapper.toString());
         return getResponse(apiErrorWrapper);
     }
 
@@ -30,6 +42,7 @@ public class CustomResponseEntityExceptionHandler extends ExceptionHandlerExcept
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
         apiErrorWrapper.setErrorCode(HttpStatus.BAD_REQUEST);
         apiErrorWrapper.addErrorMessage(ex.getOriginalMessage());
+        log.debug(apiErrorWrapper.toString());
         return getResponse(apiErrorWrapper);
     }
 
@@ -38,6 +51,7 @@ public class CustomResponseEntityExceptionHandler extends ExceptionHandlerExcept
         ApiErrorWrapper apiErrorWrapper = new ApiErrorWrapper();
         apiErrorWrapper.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR);
         apiErrorWrapper.addErrorMessage("Error in database communication");
+        log.debug(apiErrorWrapper.toString());
         return getResponse(apiErrorWrapper);
     }
 
